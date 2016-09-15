@@ -1,0 +1,60 @@
+extends layout
+block content
+  .container
+    .col-md-12
+      h2 STOCK ENTRY
+      div(ng-app='myApp')
+        div( ng-controller='ExampleController')
+          form(name='myForm')
+            label(for='singleSelect') Vendor: 
+            br
+            select(id = 'vendor', name='singleSelect', ng-model='data.singleSelect')
+              each val,index in vname
+                option(value='option-'+index) #{val.vname}
+            br
+            label(for='singleSelect2') Items: 
+            br
+            select(name='singleSelect2', ng-model='data.singleSelect2')
+              each val,index in iname
+                option(value='option-'+index) #{val.iname}
+            br
+        div(ng-controller='DateController')
+          form
+            .form-group
+              label.control-label(for='request-date')  Date:
+              .control
+                input#request-date.form-control(type='date', ng-model='requestDate')
+        div( ng-controller='myCtrl')
+          form(name='myForm')
+              label
+                h4 Stores:
+              br
+              label
+                | Store1:
+                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value1')
+              label
+                | Store2:
+                input(style='margin:10px',type='checkbox', ng-model='checkboxModel.value2')
+              label
+                | Store3:
+                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value3')
+              br
+              label
+                | Store4:
+                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value4')
+              label
+                | Store5:
+                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value5')
+              label
+                | Store6:
+                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value6')
+              br
+              br
+              button( ng-click= 'selectAll()' )
+                | Select All
+              button( ng-click= 'deselectAll()' ) 
+                | Deselect All
+              br
+              br
+              button(style='margin-bottom:30px', ng-click='saveAll()')
+                | Enter 
