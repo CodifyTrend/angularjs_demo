@@ -14,7 +14,7 @@ block content
             br
             label(for='singleSelect2') Items: 
             br
-            select(name='singleSelect2', ng-model='data.singleSelect2')
+            select(id = 'item',name='singleSelect2', ng-model='data.singleSelect2')
               each val,index in iname
                 option(value='option-'+index) #{val.iname}
             br
@@ -29,26 +29,9 @@ block content
               label
                 h4 Stores:
               br
-              label
-                | Store1:
-                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value1')
-              label
-                | Store2:
-                input(style='margin:10px',type='checkbox', ng-model='checkboxModel.value2')
-              label
-                | Store3:
-                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value3')
-              br
-              label
-                | Store4:
-                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value4')
-              label
-                | Store5:
-                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value5')
-              label
-                | Store6:
-                input(style='margin:10px', type='checkbox', ng-model='checkboxModel.value6')
-              br
+              .checkbox(ng-repeat='product in products')
+                input(type='checkbox', ng-model='product.selected', ng-change='add(product)')
+                |  {{product.name}}
               br
               button( ng-click= 'selectAll()' )
                 | Select All

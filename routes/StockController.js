@@ -17,8 +17,14 @@ exports.home = function(req, res){
 
 exports.storeData= function(req, res){
    console.log("inside send function");
-      var client = db.pg_connect();
-      var queryConfig="insert into tbldemo (iid,date,storeids) values(2,'10/11/2016','store4,store2,store3') ";
+        var client = db.pg_connect();
+	var itemindex=req.body.itemindex;
+	var store=req.body.store;
+	var datevalue=req.body.datevalue;
+         var   queryConfig = {
+              text: 'insert into tbldemo( iid,date,storeids ) values( $1, $2, $3)',
+              values: [itemindex, datevalue, store]
+            };
 	 client.query(queryConfig, function(err, result) {
               if (err){   
 		console.log("error occur is "+err);              

@@ -7,49 +7,45 @@ app.controller('ExampleController', ['$scope','$rootScope', function($scope, $ro
 }]);
 
 app.controller('DateController', ['$scope', function($scope) {
-        $scope.requestDate = new Date(2014, 3, 19);
+               
+		
+        $scope.requestDate = new Date(2011, 1, 11);
     }
 ]);
 
-app.controller('DateController', ['$scope', function($scope) {
-      $scope.example = {
-        value: new Date(2010, 11, 28, 14, 57)
-      };
-}]);
-
 app.controller('myCtrl', ['$scope','$http','$rootScope', function($scope,$http, $rootScope) {
-
+  $scope.products = [
+    {'name':'Store1', 'selected': false},
+    {'name':'store2', 'selected': false},
+    {'name':'store3', 'selected': false}
+  ];
 	$scope.checkboxModel = {
      	};
 
-	$scope.selectAll = function() {
-
-		$scope.checkboxModel.value1 = true;
-		$scope.checkboxModel.value2 = true;
-		$scope.checkboxModel.value3 = true;
-		$scope.checkboxModel.value4 = true;
-		$scope.checkboxModel.value5 = true;
-		$scope.checkboxModel.value6 = true;
-      
+$scope.selectAll = function() {
+  		angular.forEach($scope.products, function(product) {
+       			 product.selected=true;
+ 		 });
 	};    
-	$scope.deselectAll = function() {
-
-		$scope.checkboxModel.value1 = false;
-		$scope.checkboxModel.value2 = false;
-		$scope.checkboxModel.value3 = false;
-		$scope.checkboxModel.value4 = false;
-		$scope.checkboxModel.value5 = false;
-		$scope.checkboxModel.value6 = false;     
+$scope.deselectAll = function() {
+  		angular.forEach($scope.products, function(product) {
+        		product.selected=false;
+  		});
 	};          
 
-	$scope.saveAll = function () {
-		
-		var vendor = $( "#vendor option:selected" ).text();
-		console.log("vender name = "+ vendor);
+$scope.saveAll = function () {	
+
+  var selectedProducts = "";
+  angular.forEach($scope.products, function(product) {
+    if(product.selected) selectedProducts+= " , "+product.name;
+  });
+		var item = $( "#item option:selected" ).val().substr(7,8); item++;	
+    		var date = angular.element($('#request-date')).val();
+     		console.log("stores=", selectedProducts , "date =", date , "item index=",item);
     		$http({
      		  method : 'POST',
      		   url : '/storeData',
-    		    data: { test: 'testdata', }
+    		    data: { itemindex: item , datevalue:date,store:selectedProducts }
    		 }).then(function mySucces(response) {
     		    alert("success");
    		 }, function myError(response) {
