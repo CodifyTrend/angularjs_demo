@@ -17,7 +17,13 @@ app.controller('myCtrl', ['$scope','$http','$rootScope', function($scope,$http, 
   $scope.products = [
     {'name':'Store1', 'selected': false},
     {'name':'store2', 'selected': false},
-    {'name':'store3', 'selected': false}
+    {'name':'store3', 'selected': false},
+    {'name':'Store4', 'selected': false},
+    {'name':'store5', 'selected': false},
+    {'name':'store6', 'selected': false},
+    {'name':'Store7', 'selected': false},
+    {'name':'store8', 'selected': false},
+    {'name':'store9', 'selected': false}
   ];
 	$scope.checkboxModel = {
      	};
