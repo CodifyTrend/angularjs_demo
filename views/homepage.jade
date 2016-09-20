@@ -8,15 +8,16 @@ block content
           form(name='myForm')
             label(for='singleSelect') Vendor: 
             br
-            select(id = 'vendor', name='singleSelect', ng-model='data.singleSelect')
+            select(id = 'vendor', name='singleSelect', ng-model='data.singleSelect' , ng-change='updateItems()')
               each val,index in vname
                 option(value='option-'+index) #{val.vname}
             br
             label(for='singleSelect2') Items: 
             br
-            select(id = 'item',name='singleSelect2', ng-model='data.singleSelect2')
-              each val,index in iname
-                option(value='option-'+index) #{val.iname}
+            .allItems
+              select(id ='item',name='singleSelect2', ng-model='data.singleSelect2')
+                each val,index in iname
+                  option(value='option-'+index) #{val.iname}
             br
         div(ng-controller='DateController')
           form

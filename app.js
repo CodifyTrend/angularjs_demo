@@ -26,6 +26,8 @@ if ('development'== app.get('env')) {
 
 app.get('/', StockController.home);
 app.post('/storeData', StockController.storeData);
+app.post('/updateItems', StockController.updateItems);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   db.pg_migrate();
